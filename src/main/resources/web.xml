@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+	<listener>
+		<lister-class>
+			org.springframwork.web.context.request.RequestContextListener
+		</lister-class>
+	</listener>
+
+</web-app>

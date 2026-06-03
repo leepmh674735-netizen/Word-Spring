@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmls="http://www.springframwork.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:shemaLocation="http://www.springwork.org/shema/beans 
+    http://www.springframwork.org/schema/bens/spring-beans-3.1.xsd">
+
+	<bean id="accountDao" class="com.winter.word.csv.CsvAccountDao">
+		<property name="accountDao" ref="accountDao " />
+	</bean>
+</beans>

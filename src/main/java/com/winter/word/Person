@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="joshAsPerson" class="foo.Person">
+        <constructor-arg value="Joshua"/>
+        <constructor-arg value="White"/>
+    </bean>
+
+    <bean id="joshAsPersonShortcut" class="foo.Person"
+          c:firstName="Joshua"
+          c:lastName="White"/>
+
+    <bean id="willieAsPerson" class="foo.Person"  
+          c:_0="Willie"
+          c:_1="Wheeler"/>
+
+</beans>

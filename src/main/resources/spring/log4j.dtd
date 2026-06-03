@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!ELEMENT log4j:configuration (renderer*, appender*,plugin*, (category|logger)*,root?,(categoryFactory|loggerFactory)?)>
+<!ATTLIST log4j:configuration
+  xmlns:log4j              CDATA #FIXED "http://jakarta.apache.org/log4j/" 
+  threshold                (all|trace|debug|info|warn|error|fatal|off|null) "null"
+  debug                    (true|false|null)  "null"
+  reset                    (true|false) "false"
+>
+<!ELEMENT renderer EMPTY>
+<!ATTLIST renderer
+  renderedClass  CDATA #REQUIRED
+  renderingClass CDATA #REQUIRED
+>
+<!ELEMENT appender (errorHandler?, param*, rollingPolicy?, triggeringPolicy?, connectionSource?, layout?, filter*, appender-ref*)>
+<!ATTLIST appender
+  name 		CDATA 	#REQUIRED
+  class 	CDATA	#REQUIRED
+>
+<!ELEMENT layout (param*)>
+<!ATTLIST layout
+  class		CDATA	#REQUIRED
+>
+<!ELEMENT filter (param*)>
+<!ATTLIST filter
+  class		CDATA	#REQUIRED
+>
+<!ELEMENT errorHandler (param*, root-ref?, logger-ref*,  appender-ref?)> 
+<!ATTLIST errorHandler
+   class        CDATA   #REQUIRED 
+>
+<!ELEMENT root-ref EMPTY>
+<!ELEMENT logger-ref EMPTY>
+<!ATTLIST logger-ref
+  ref CDATA #REQUIRED
+>
+<!ELEMENT param EMPTY>
+<!ATTLIST param
+  name		CDATA   #REQUIRED
+  value		CDATA	#REQUIRED
+>
+<!ELEMENT priority (param*)>
+<!ATTLIST priority
+  class   CDATA	#IMPLIED
+  value	  CDATA #REQUIRED
+>
+<!ELEMENT level (param*)>
+<!ATTLIST level
+  class   CDATA	#IMPLIED
+  value	  CDATA #REQUIRED
+>
+<!ELEMENT category (param*,(priority|level)?,appender-ref*)>
+<!ATTLIST category
+  class         CDATA   #IMPLIED
+  name		CDATA	#REQUIRED
+  additivity	(true|false) "true"  
+>
+<!ELEMENT logger (level?,appender-ref*)>
+<!ATTLIST logger
+  name		CDATA	#REQUIRED
+  additivity	(true|false) "true"  
+>
+<!ELEMENT categoryFactory (param*)>
+<!ATTLIST categoryFactory 
+   class        CDATA #REQUIRED>
+<!ELEMENT loggerFactory (param*)>
+<!ATTLIST loggerFactory
+   class        CDATA #REQUIRED>
+<!ELEMENT appender-ref EMPTY>
+<!ATTLIST appender-ref
+  ref CDATA #REQUIRED
+>
+<!ELEMENT plugin (param*, connectionSource?)>
+<!ATTLIST plugin
+  name 		CDATA 	   #REQUIRED
+  class 	CDATA  #REQUIRED
+>
+<!ELEMENT connectionSource (dataSource?, param*)>
+<!ATTLIST connectionSource
+  class        CDATA  #REQUIRED
+  
+  

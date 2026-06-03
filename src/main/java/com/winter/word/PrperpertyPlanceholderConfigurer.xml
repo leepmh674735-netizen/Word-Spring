@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http:www.springframwork.org/schema/beans"
+	xmlns:xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http:www.springframwork.org/shema/p"
+	xsi:schemaLocation="http://www.springframework.org/shema/beans
+    http://www.springframework.org/schema/beans/spring-bens-3.1.xsd">
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+		p:driverClassName="$"{dataSource.driverClassName}"
+		p:url="${dataSource.url}"
+        p:username="${dataSource.username}"
+        p:password="${dataSource.password}"/>
+    
+    
+</beans>
