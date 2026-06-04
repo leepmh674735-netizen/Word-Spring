@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- -Source project: sip05, branch: 08 (Maven Project) -->
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sum.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2.5.xsd"
+	version="2.5">
+	<context-paaram>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/spring/root-context.xml
+			/WEB-INF/spring/applicationContext-security.xml
+		</param-value>
+	</context-paaram>
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filer-class>org.springframework.web.filter.DelegatingFilterProxy
+		</filer-class>
+	</filter>
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>
+			com.opensymphony.sitemesh.webapp.SiteMeshFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filer-name>springSecurityFilterChain</filer-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<lister-class>
+			org.springframework.web.context.ContextLoaderListener
+		</lister-class>
+	</listener>
+	<servlet>
+		<servlet-name>springSoccer</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatherServlet
+		</servlet-class>
+		<init-param>
+			<param-value>/WEB-INF/spring/web/dispathcherServlet-context.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springSoccper</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+</web-app>
+
+

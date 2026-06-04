@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'war'
-    id 'org.springframework.boot' version '3.5.14'
+    id 'org.springframework.boot' version '3.4.3'
     id 'io.spring.dependency-management' version '1.1.7'
     id 'eclipse'
 }
@@ -20,6 +20,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
@@ -29,7 +30,7 @@ dependencies {
     runtimeOnly 'org.glassfish.web:jakarta.servlet.jsp.jstl' 
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
     runtimeOnly 'org.postgresql:postgresql'
     
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -39,7 +40,7 @@ dependencies {
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

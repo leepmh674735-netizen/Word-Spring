@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          https://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd"
+      start-state="start" parent="common">
+
+    <view-state id="start">
+        <on-entry>
+            <set name="flowScope.previousEventId" value="'start'" />
+        </on-entry>
+        <transition on="throwError" to="throwError" />
+    </view-state>
+
+    <view-state id="childOfInheritedView" parent="common#commonView" />
+
+    <action-state id="throwError">
+        <evaluate expression="exceptionAction" />
+    </action-state>
+
+    <end-state id="end" view="externalRedirect:contextRelative:/index.jsp" />
+
+    <global-transitions>
+        <transition on="start" to="start" />
+    </global-transitions>
+
+</flow>

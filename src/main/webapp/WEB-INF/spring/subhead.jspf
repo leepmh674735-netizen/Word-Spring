@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
+<c:url var="homeUrl" value="/main/home.html" />
+<c:url var="postLoginUrl" value="/j_spring_security_check" />
+<c:url var="logoutUrl" value="/j_spring_security_logout" />
+
+<html>
+<head>
+    <title>Login Status</title>
+</head>
+<body>
+    <%@ include file="includes/subhead.jspf" %>
+
+    <nav>
+        <a href="${homeUrl}">Home</a>
+        
+        <security:authorize access="isAnonymous()">
+            <form action="${postLoginUrl}" method="post">
+                Username: <input type="text" name="j_username" /> &nbsp; 
+                Password: <input type="password" name="j_password" /> &nbsp; 
+                <input type="submit" value="Log in" />
+            </form>
+        </security:authorize>
+        
+        <security:authorize access="isAuthenticated()">
+            Hi, <security:authentication property="principal.username" />
+            <a href="${logoutUrl}">Log out</a>
+        </security:authorize>
+    </nav>
+
+    <hr />
+
+    <c:choose>
+        <c:when test="${param.login_error ne null}">
+            <h1>Login failed</h1>
+            <div class="warning">
+                Your login attempt failed. Please try again, or contact technical support for further assistance.
+            </div>
+        </c:when>
+        <c:otherwise>
+            <h1>Login required</h1>
+            <p>Please log in to access the requested page.</p>
+        </c:otherwise>
+    </c:choose>
+
+</body>
+</html>
