@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/jee 
+                           http://www.springframework.org/schema/jee/spring-jee.xsd
+                           http://www.springframework.org/schema/util 
+                           http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <jee:jndi-lookup id="mailSession" jndi-name="mail/Session" resource-ref="true" />
+
+    <bean id="mailSender"
+          class="org.springframework.mail.javamail.JavaMailSenderImpl"
+          p:session-ref="mailSession" />
+
+    <bean id="velocityEngine"
+          class="org.springframework.ui.velocity.VelocityEngineFactoryBean"
+          p:resourceLoaderPath="classpath:/velocity/" />
+
+    <util:properties id="contactServiceProps"
+                     location="classpath:/spring/contactService.properties" />
+                     
+</beans>
