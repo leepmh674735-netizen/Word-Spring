@@ -1,0 +1,24 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<spring:message var="postCommentLabel" code="commentForm.label.postComment" />
+
+<h2>Post a comment</h2>
+<form:form modelAttribute="comment" action="${postCommentUrl}" method="post">
+    
+    <form:errors path="">
+        <div class="alert warning">
+            <form:errors path="*" />
+        </div>
+    </form:errors>
+    
+    <div>
+        <spring:message code="commentForm.label.yourName" />:
+        <form:input path="name" />
+        <div class="formFieldError">
+            <form:errors path="name" />
+        </div>
+    </div>
+
+</form:form>

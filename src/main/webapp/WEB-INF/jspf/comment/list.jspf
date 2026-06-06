@@ -1,0 +1,28 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<h2>Comments (${fn:length(commentList)})</h2>
+<c:choose>
+    <c:when test="${not empty commentList}">
+        <c:forEach var="comment" items="${commentList}">
+            <div>
+                <c:out value="${comment.text}" escapeXml="false" />
+                by
+                <c:choose>
+                    <c:when test="${empty comment.web}">
+                        <c:out value="${comment.name}" />
+                    </c:when>
+                    <c:otherwise>
+                        <a href="<c:out value="${comment.web}" />" rel="nofollow">
+                            <c:out value="${comment.name}" />
+                        </a>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </c:forEach>
+    </c:when>
+    <c:otherwise>
+        <p>No comments yet.</p>
+    </c:otherwise>
+</c:choose>
