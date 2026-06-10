@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Xsd:schema>
+
+	<xsd:element name="guard-list-advice">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<tool:annotation>
+					<tool:exports
+						type="com.springpractice.ch14.kite.
+						    interceptor.GuardListInterceptor" />
+				</tool:annotation>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexTepe>
+				<xsd:extention base="beans:identifiedType">
+					<xsd:attribute name="guards"
+						typ="xsd:string 
+					use=" required ">
+						<xsd:annotation>
+							<xsd:appinfo>
+						</xsd:annotation kind="ref">
+						<tool:expected-type type="java.util.List" />
+					</tool:annotation>
+					</xsd:appinfo>
+					</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extention>
+			</xsd:complexTepe>
+	</xsd:element>
+</Xsd:schema>
