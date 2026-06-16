@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.springinpractice.ch02.service.impl.ContactService;
+import com.springinpractice.ch08.service.ContactService;
+import com.springinpractice.ch08.domain.UserMessage;
 
 import jakarta.inject.Inject;
 import jakarta.servlet.http.HttpServletRequest;

@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.springinpractice.ch08.domain.Subscriber;
+import com.springinpractice.ch08.service.MailingListService;
+import com.springinpractice.ch08.exception.ConfirmationExpiredException;
+import com.springinpractice.ch08.exception.ConfirmationFailedException;
+
 import jakarta.inject.Inject;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;

@@ -1,7 +1,7 @@
 package com.springinpractice.ch14.kite.interceptor;
 
 import java.lang.reflect.Method;
-import java.security.Guard;
+import com.springinpractice.ch14.kite.Guard;
 import java.util.List;
 
 public class DefaultGuardListSource implements GuardListSource {
@@ -11,7 +11,7 @@ public class DefaultGuardListSource implements GuardListSource {
 	
 	public void setGuards (List<Guard> guards) { this.guards = guards; }
 	
-	public List<Guard> getGuards (Method method, class<?> targerClass) {
+	public List<Guard> getGuards (Method method, Class<?> targetClass) {
 		return guards;
 	}
 }

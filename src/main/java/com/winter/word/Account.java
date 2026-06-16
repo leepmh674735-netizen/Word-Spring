@@ -15,5 +15,8 @@ public class Account {
 	private String accountNo;
 	private BigDecimal balance;
 	private Date lastPaidOn;
+	private String username;
+	private String password;
+	private String email;
 
 }

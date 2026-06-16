@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.springinpratice.ch09.aritcle.model.Article;
-import com.springinpratice.ch09.comment.model.Comment;
+import com.springinpractice.ch09.article.model.Article;
+import com.springinpractice.ch09.comment.model.Comment;
+import com.springinpractice.ch09.article.model.ArticlePage;
+import com.springinpractice.ch09.article.service.ArticleService;
 
 import jakarta.inject.Inject;
 import jakarta.servlet.http.HttpServletRequest;

@@ -6,7 +6,7 @@ import com.springinpractice.ch14.kite.sample.model.Message;
 
 public interface MessageService {
 	
-	Message getMothid ();
+	Message getMotd();
 	
 	List<Message> getImportantMessages();
 }

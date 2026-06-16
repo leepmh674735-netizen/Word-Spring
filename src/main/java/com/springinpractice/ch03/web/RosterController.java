@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.lang.reflect.Member;
+import com.springinpractice.ch03.model.Member;
 
 @Controller
 @RequestMapping("/roster")

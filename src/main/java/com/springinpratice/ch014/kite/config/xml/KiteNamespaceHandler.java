@@ -1,22 +1,21 @@
 package com.springinpratice.ch014.kite.config.xml;
 
-import java.lang.System.Logger;
-
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 public class KiteNamespaceHandler extends NamespaceHandlerSupport {
-	private static Logger log =
-			LoggerFactory.getILogger(KiteNamespaceHadler");
+	private static final Logger log =
+			LoggerFactory.getLogger(KiteNamespaceHandler.class);
 		
-	        public void init () {
-				log.info("Initializing KiteNamwspaceHandler");
-				registerBeanDefintionParser(
-						"annotation-config", new AnnnotationConfigParser());
-				registerBeanDefinitionParser(
-						"guard-list-advice", new GuardListAdviceParser());
-				registerBeanDefinitionParser(
-						"circuit-breaker", new CircuitBreakerParser ());	
-		        }
-
-             }
+	@Override
+	public void init() {
+		log.info("Initializing KiteNamespaceHandler");
+		registerBeanDefinitionParser(
+				"annotation-config", new AnnotationConfigParser());
+		registerBeanDefinitionParser(
+				"guard-list-advice", new GuardListAdviceParser());
+		registerBeanDefinitionParser(
+				"circuit-breaker", new CircuitBreakerParser());	
+	}
+}

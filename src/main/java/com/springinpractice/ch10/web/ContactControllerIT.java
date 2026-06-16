@@ -20,10 +20,10 @@ import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 
 import com.spring.cho2.model.Contact;
-import com.springinpractice.ch08.web.ContactController;
+import com.springinpratice.ch02.web.ContactController;
 
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
@@ -45,13 +45,13 @@ public class ContactControllerIT {
     
     private JdbcTemplate jdbcTemplate;
     private MockHttpServletRequest request;
-    private Model model;
+    private org.springframework.ui.Model model;
          
     @Before
     public void setUp() throws Exception {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.request = new MockHttpServletRequest();
-        this.model = new ExtendedModelMap();
+        this.model = new org.springframework.ui.ExtendedModelMap();
     }
     
     @After
@@ -70,10 +70,10 @@ public class ContactControllerIT {
        
         BindingResult result = new BeanPropertyBindingResult(contact, "contact");
        
-        String viewName = controller.updateContact(1L, contact, result, model);
+        String viewName = controller.updateContact(request, 1L, contact, result);
         assertEquals(expectedUpdateContactSuccessViewName, viewName);
         
-        Model anotherModel = new ExtendedModelMap();
+        org.springframework.ui.Model anotherModel = new org.springframework.ui.ExtendedModelMap();
         controller.getContact(request, 1L, anotherModel);
         Contact updatedContact = (Contact) anotherModel.asMap().get("contact");
         assertEquals("Bob", updatedContact.getFirstName());

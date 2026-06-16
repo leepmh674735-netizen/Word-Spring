@@ -11,10 +11,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.mock.web.MockHttpServletRequest;
 
-import com.springinpractice.ch08.web.ContactController;
+import com.springinpratice.ch02.web.ContactController;
 
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({

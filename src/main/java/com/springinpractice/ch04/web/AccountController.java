@@ -1,7 +1,6 @@
 package com.springinpractice.ch04.web;
 
-import java.lang.System.Logger;
-
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +15,7 @@ public class AccountController {
 	
 	@RequestMapping(value = "new", method = RequestMethod.GET)
 	public String getRegistionForm(Model model) {
-		model.addAttribute("account", new AccountFrom());
+		model.addAttribute("account", new AccountForm());
 		return "users/registrationForm";
 	}
 	
@@ -24,7 +23,7 @@ public class AccountController {
 	public String postRegistractionForm(AccountForm form) {
 		log.info("Created registration: {}", form);
 		return "redirect:registraction_Ok";
-		}
 	}
+}
 
 

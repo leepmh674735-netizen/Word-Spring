@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Flankinator {
-	private volatile boolean up = ture;
+	private volatile boolean up = true;
 	
 	public void simulateFlakiness() {
 		if (up) {

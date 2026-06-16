@@ -1,8 +1,8 @@
 package com.springinpractice.ch12.dao.jcr;
 
 import java.io.IOException;
-import jakarta.websocket.Session;
-import ch.qos.logback.core.pattern.parser.Node;
+import javax.cr.Session;
+import javax.cr.Node;
 import javax.cr.RepositoryException;
 import javax.cr.PathNotFoundException;
 
@@ -60,9 +60,9 @@ public class JcrArticleDao extends JcrDaoSupport implements ArticleDao {
         return getArticlesPath() + "/" + articleId;
     }
     
-    private Node getArticlesNode(Session) throws RepositoryException {
+    private Node getArticlesNode(Session session) throws RepositoryException {
         try { 
-            return Session.getNode(getArticlesPath());
+            return session.getNode(getArticlesPath());
         } catch (PathNotFoundException e) {
             return session.getRootNode().addNode(getArticlesNodeName());
         }

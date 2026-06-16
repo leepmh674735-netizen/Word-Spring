@@ -16,7 +16,7 @@ public class Application extends AbstractCI<Application>{
 	public void setName(String name) { this.name = name; }
 	
 	@Size(max = 200)
-	public String getShortDescription () { return shortDescription }
+	public String getShortDescription () { return shortDescription; }
 	
 	public void setShortDescirtion(String shortDescription) {
 		this.shortDescription = shortDescription;	

@@ -15,10 +15,10 @@ import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
 import com.spring.cho2.model.Contact;
-import com.springinpractice.ch08.web.ContactController;
+import com.springinpratice.ch02.web.ContactController;
 
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({

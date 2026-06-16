@@ -5,6 +5,9 @@ import java.io.Serializable;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 
+import com.springinpractice.ch05.domain.Guardian;
+import com.springinpractice.ch05.domain.Player;
+
 public class AccountForm implements Serializable {
     private static final long serialVersionUID = 1L;
      

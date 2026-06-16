@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 
 import com.winter.word.Account;
-import com.winter.word.AccountDao;
+import com.springinpratice.ch04.dao.AccountDao;
 
 import jakarta.inject.Inject;
 

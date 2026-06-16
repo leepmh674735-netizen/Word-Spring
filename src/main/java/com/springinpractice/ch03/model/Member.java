@@ -1,14 +1,14 @@
 package com.springinpractice.ch03.model;
 
 public class Member {
-	private String firatName;
+	private String firstName;
 	private String lastName;
 
 	public Member() {
 	}
 
 	public Member(String firstName, String lastName) {
-		this.firatName = firstName;
+		this.firstName = firstName;
 		this.lastName = lastName;
 	}
 
@@ -24,7 +24,7 @@ public class Member {
 		return lastName;
 	}
 
-	public void setLastName() { return lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 

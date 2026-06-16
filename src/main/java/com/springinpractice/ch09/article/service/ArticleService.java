@@ -1,0 +1,12 @@
+package com.springinpractice.ch09.article.service;
+
+import java.util.List;
+import com.springinpractice.ch09.article.model.Article;
+import com.springinpractice.ch09.article.model.ArticlePage;
+import com.springinpractice.ch09.comment.model.Comment;
+
+public interface ArticleService {
+    List<Article> getAllArticles();
+    ArticlePage getArticlePage(String articleName, int pageNumber);
+    void postComment(String articleName, Comment comment);
+}

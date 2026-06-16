@@ -1,9 +1,10 @@
 package com.springinpractice.ch05.mvc;
 
-import javax.swing.Action;
-import java.awt.Event;
-import org.apache.tomcat.util.http.fileupload.RequestContext;
-public class FindExistingPlayerAction implements Action {
+import com.springinpractice.ch05.domain.Player;
+import com.springinpractice.ch05.domain.PlayerSearchCriteria;
+import com.springinpractice.ch05.service.PlayerService;
+
+public class FindExistingPlayerAction {
     
     private PlayerService playerService;
     
@@ -11,18 +12,10 @@ public class FindExistingPlayerAction implements Action {
         this.playerService = playerService; 
     }
     
-    @Override
-    public Event execute(RequestContext context) throws Exception {
-        PlayerSearchCriteria criteria = 
-                (PlayerSearchCriteria) context.getFlowScope().get("playerSearchCriteria");
-                 
+    public Player execute(PlayerSearchCriteria criteria) throws Exception {
         if (criteria != null) {
-            Player player = playerService.findExistingPlayer(criteria);
-            context.getFlowScope().put("player", player);
-             
-            return new Event(this, "success");                 
-        } else {
-            return new Event(this, "error");
+            return playerService.findExistingPlayer(criteria);
         }
+        return null;
     }
 }

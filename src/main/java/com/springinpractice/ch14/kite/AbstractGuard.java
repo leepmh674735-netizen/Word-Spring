@@ -9,7 +9,8 @@ public abstract class AbstractGuard implements Guard, BeanNameAware {
 		return name;
 	}
 
-	public void setBaseName(String beanName) {
+	@Override
+	public void setBeanName(String beanName) {
 		this.name = beanName;
 	}
 }

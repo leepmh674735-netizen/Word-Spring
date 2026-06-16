@@ -7,11 +7,11 @@ import com.springinpractice.dao.hibernate.AbstractHbnDao;
 import com.winter.word.Account;
 
 import jakarta.inject.Inject;
-import jakarta.persistence.Query;
+import org.hibernate.query.Query;
 
 @Repository
 public class HbnAccountDao extends AbstractHbnDao<Account> 
-    implements AccuntDao {
+    implements AccountDao {
 	
 	private static final String UPDATE_PASSWORD_SQL =
 			"update account set password = ? where username = ?";
@@ -24,7 +24,7 @@ public class HbnAccountDao extends AbstractHbnDao<Account>
 	}
 	
 	public Account findByUsername(String username) {
-		Query q = getSession().getNamedQuery("findAccountByUsername);
+		Query q = getSession().getNamedQuery("findAccountByUsername");
 		q.setParameter("username", username );
 		return (Account) q.uniqueResult ();
 	}

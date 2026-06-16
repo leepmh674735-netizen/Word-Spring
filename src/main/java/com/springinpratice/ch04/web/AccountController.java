@@ -36,4 +36,17 @@ public class AccountController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String postRegistrationForm(@ModelAttribute("account") @Valid AccountForm form, BindingResult result) {
         convertPasswordError(result);
-        return result.hasErrors() ? VN_REG_FORM : VN
+        return result.hasErrors() ? VN_REG_FORM : VN_REG_OK;
+    }
+
+    private void convertPasswordError(BindingResult result) {
+        for (ObjectError error : result.getGlobalErrors()) {
+            String code = error.getCode();
+            if ("invalidPassword".equals(code)) {
+                result.rejectValue("password", "invalidPassword", error.getDefaultMessage());
+            } else if ("passwordsDoNotMatch".equals(code)) {
+                result.rejectValue("confirmPassword", "passwordsDoNotMatch", error.getDefaultMessage());
+            }
+        }
+    }
+}

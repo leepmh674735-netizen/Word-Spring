@@ -7,24 +7,27 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;
 
 import com.springinpractice.ch14.kite.interceptor.GuardListInterceptor;
+import com.springinpractice.ch14.kite.interceptor.DefaultGuardListSource;
 
-import jakarta.xml.bind.Element;
+import org.w3c.dom.Element;
 
 public class GuardListAdviceParser extends AbstractSingleBeanDefinitionParser {
 	
-	protected Class<?> getBeanClass (Element elem){
+	@Override
+	protected Class<?> getBeanClass(Element elem) {
 		return GuardListInterceptor.class;
 	}
 	
+	@Override
 	protected void doParse(Element elem, BeanDefinitionBuilder builder) {
 		builder.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
 		
 		RootBeanDefinition srcDef = 
-				new RootBeanDefinition(DefaultGuardListSoure.class);
+				new RootBeanDefinition(DefaultGuardListSource.class);
 		srcDef.setSource(elem);
 		srcDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
 		srcDef.getPropertyValues().add("guards",
-				new RuntimeBeanReference(elem.getAttribute("guards"));
+				new RuntimeBeanReference(elem.getAttribute("guards")));
 		builder.addPropertyValue("source", srcDef);
 	}
 }

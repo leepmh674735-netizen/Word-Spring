@@ -4,6 +4,6 @@ public interface Guard {
     
 	String getName ();
 	
-	<T> execute(GuardCallback<T> action) throws Exception;
+	<T> T execute(GuardCallback<T> action) throws Exception;
 	
 }

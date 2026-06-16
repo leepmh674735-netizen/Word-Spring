@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.springinpractice.ch14.kite.GuardCallback;
+import com.springinpractice.ch14.kite.guard.CircuitBreakerTemplate;
 import com.springinpractice.ch14.kite.sample.model.Message;
 import com.springinpractice.ch14.kite.sample.service.MessageService;
 
@@ -13,32 +15,39 @@ import jakarta.inject.Inject;
 @Service
 public class MessageServiceImpl implements MessageService {
 	@Inject
-	private CircuitBreankerTemplate breaker;
+	private CircuitBreakerTemplate breaker;
 	@Inject
 	private Flankinator flankinator;
 
+	@Override
 	public Message getMotd() {
 		try {
-			return breaker.excute(new GuardCallback<Message>() {
+			return breaker.execute(new GuardCallback<Message>() {
+				@Override
 				public Message doInGuard() throws Exception {
 					return doGetMotd();
 				}
 			});
 		} catch (Exception e) {
-			throw new RuntimeException(e)
+			throw new RuntimeException(e);
 		}
 	}
 
 	private Message doGetMotd() {
-		flackinator.simuateFlankiness();
-		return createMessge("<p>Welcome to Aggro's Throwne!</p>");
+		flankinator.simulateFlakiness();
+		return createMessage("<p>Welcome to Aggro's Throne!</p>");
 	}
 
-	public List<Message> doGetImportantMessges() {
+	@Override
+	public List<Message> getImportantMessages() {
+		return doGetImportantMessages();
+	}
+
+	private List<Message> doGetImportantMessages() {
 		flankinator.simulateFlakiness();
 		List<Message> messages = new ArrayList<Message>();
 		messages.add(createMessage("<p>Important message 1</p>"));
-		messages.add(createMessage("<p>Important messge 2</p>"));
+		messages.add(createMessage("<p>Important message 2</p>"));
 		messages.add(createMessage("<p>Important message 3</p>"));
 		return messages;
 	}
@@ -48,5 +57,4 @@ public class MessageServiceImpl implements MessageService {
 		message.setHtmlText(htmlText);
 		return message;
 	}
-
 }
