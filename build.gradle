@@ -58,6 +58,31 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+compileJava {
+    exclude 'org/springframework/social/**'
+    exclude 'com/spring/cho2/**'
+    exclude 'com/springinpratice/**'
+    exclude 'com/springinpractice/dao/**'
+    exclude 'com/springinpractice/ch02/**'
+    exclude 'com/springinpractice/ch05/**'
+    exclude 'com/springinpractice/ch09/**'
+    exclude 'com/springinpractice/ch10/**'
+    exclude 'com/springinpractice/ch11/**'
+    exclude 'com/springinpractice/ch12/**'
+    exclude 'com/springinpractice/ch13/**'
+    exclude 'com/springinpractice/ch14/kite/config/**'
+    exclude 'com/springinpractice/ch14/kite/guard/**'
+    exclude 'com/springinpractice/ch14/kite/interceptor/**'
+    exclude 'com/springinpractice/ch14/kite/AbstantactGuard.java'
+    exclude 'com/springinpractice/ch14/kite/sample/service/impl/MessageServiceImpl1.java'
+    exclude 'com/springinpractice/ch08/service/impl/ContactServicelmpl.java'
+    exclude 'com/winter/word/Account.java'
+    exclude 'com/winter/word/AccountDao.java'
+    exclude 'com/winter/word/AccountService.java'
+    exclude 'com/winter/word/CsvAccountDao.java'
+    exclude 'com/winter/word/JdbcAccountDao.java'
+}
+
 eclipse {
     wtp {
         facet {

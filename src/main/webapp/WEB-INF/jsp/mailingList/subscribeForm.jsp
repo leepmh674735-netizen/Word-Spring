@@ -1,75 +1,142 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/2000/ajax">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<c:url var="homeUrl" value="/" />
+<c:url var="rosterUrl" value="/roster/list" />
+<c:url var="mailingUrl" value="/mailinglist/subscribe" />
+<c:url var="nomineeUrl" value="/nominees" />
+<c:url var="contactUrl" value="/contact/new" />
+<c:url var="registerUrl" value="/users/new" />
+<c:url var="loginUrl" value="/login" />
+<c:url var="logoutUrl" value="/j_spring_security_logout" />
+<c:url var="subscribeUrl" value="/mailinglist/subscribe.html" />
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Subscribe Mailing List</title>
-    <style>
-        .error { color: red; border: 1px solid red; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe Mailing List - Aggro's Towne BBS</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Central Premium CSS Stylesheet -->
+    <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 </head>
 <body>
 
-<c:url var="subscribeUrl" value="/mailinglist/subscribe.html" />
-
-<div>
-    <%-- 1. 만료 메시지 --%>
-    <c:if test="${not empty expired}">
-        <div>
-            Sorry, your previous subscription request has expired.
-            To subscribe you will need to complete a new subscription request using the form.
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand navbar-brand-custom" href="${homeUrl}">
+                <i class="bi bi-terminal-fill me-2 fs-4 text-indigo"></i>
+                <span>Aggro's Towne BBS</span>
+            </a>
+            <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon navbar-dark"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="${homeUrl}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="${rosterUrl}">Roster</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom active" aria-current="page" href="${mailingUrl}">Mailing List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="${nomineeUrl}">Nominees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="${contactUrl}">Contact Us</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <security:authorize access="isAnonymous()">
+                        <a href="${loginUrl}" class="btn btn-outline-custom btn-sm">Log In</a>
+                        <a href="${registerUrl}" class="btn btn-premium btn-sm">Sign Up</a>
+                    </security:authorize>
+                    <security:authorize access="isAuthenticated()">
+                        <span class="text-light me-2"><i class="bi bi-person-circle me-1 text-indigo"></i> <security:authentication property="principal.username" /></span>
+                        <a href="${logoutUrl}" class="btn btn-outline-custom btn-sm">Log Out</a>
+                    </security:authorize>
+                </div>
+            </div>
         </div>
-    </c:if>
+    </nav>
 
-    <%-- 2. 실패 메시지 --%>
-    <c:if test="${not empty failed}">
-        <div>
-            Sorry, we were unable to confirm your subscription. 
-            If you copied the URL from your confirmation e-mail into the browser, please make sure you copied the entire URL.
-            Otherwise, you can complete a new subscription request using the form.
+    <!-- Main Container -->
+    <main class="container my-5" style="max-width: 600px;">
+        <div class="glass-card">
+            <header class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="h3 text-white mb-1"><i class="bi bi-envelope-check-fill text-indigo me-2"></i>Mailing List</h1>
+                    <p class="text-muted small mb-0">Join our newsletter to receive community updates</p>
+                </div>
+                <a href="${homeUrl}" class="btn btn-outline-custom btn-sm"><i class="bi bi-arrow-left me-1"></i> Back</a>
+            </header>
+
+            <%-- Expired Message --%>
+            <c:if test="${not empty expired}">
+                <div class="alert-custom-warning mb-3">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i> Sorry, your previous subscription request has expired. Please submit a new request.
+                </div>
+            </c:if>
+
+            <%-- Failed Message --%>
+            <c:if test="${not empty failed}">
+                <div class="alert-custom-warning mb-3">
+                    <i class="bi bi-x-circle-fill me-2"></i> Sorry, we were unable to confirm your subscription. If you copied the confirmation URL from your e-mail, please check that you copied it fully, or submit a new request below.
+                </div>
+            </c:if>
+
+            <form:form modelAttribute="subscriber" action="${subscribeUrl}" method="post">
+                <form:errors path="">
+                    <div class="alert-custom-warning mb-3">
+                        <i class="bi bi-exclamation-circle-fill me-2"></i> <spring:message code="error.global" />
+                    </div>
+                </form:errors>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label form-label-custom">First Name</label>
+                        <form:input path="firstName" id="firstName" class="form-control form-control-custom" placeholder="First name" required="required" />
+                        <form:errors path="firstName" class="text-danger small mt-1" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label form-label-custom">Last Name</label>
+                        <form:input path="lastName" id="lastName" class="form-control form-control-custom" placeholder="Last name" required="required" />
+                        <form:errors path="lastName" class="text-danger small mt-1" />
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="email" class="form-label form-label-custom">Email Address</label>
+                    <form:input path="email" id="email" type="email" class="form-control form-control-custom" placeholder="name@example.com" required="required" />
+                    <form:errors path="email" class="text-danger small mt-1" />
+                </div>
+                
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-premium py-2.5"><i class="bi bi-envelope-plus-fill me-2"></i>Subscribe to Broadcasts</button>
+                </div>
+            </form:form>
         </div>
-    </c:if>
+    </main>
 
-    <p>To subscribe, please provide your name and e-mail address.</p>
-
-    <%-- 3. 구독 폼 시작 --%>
-    <form:form modelAttribute="subscriber" action="${subscribeUrl}" method="post">
-        
-        <%-- 글로벌 에러 처리 --%>
-        <form:errors path="">
-            <div><spring:message code="error.global" /></div>
-        </form:errors>
-        
-        <%-- 이름 입력 영역 --%>
-        <div>Your first name:</div>
-        <div>
-            <form:input path="firstName" cssErrorClass="error" />
-            <form:errors path="firstName" cssClass="error" />
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Aggro's Towne BBS. All rights reserved.</p>
         </div>
-        
-        <%-- 성 입력 영역 --%>
-        <div>Your last name:</div>
-        <div>
-            <form:input path="lastName" cssErrorClass="error" />
-            <form:errors path="lastName" cssClass="error" />
-        </div>
+    </footer>
 
-        <%-- 이메일 입력 영역 --%>
-        <div>Email Address:</div>
-        <div>
-            <form:input path="email" cssErrorClass="error" />
-            <form:errors path="email" cssClass="error" />
-        </div>
-        
-        <%-- 제출 버튼 --%>
-        <div style="margin-top: 10px;">
-            <input type="submit" value="Subscribe" />
-        </div>
-
-    </form:form>
-</div>
-
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

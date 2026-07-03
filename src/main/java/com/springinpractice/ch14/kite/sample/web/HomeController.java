@@ -36,7 +36,7 @@ public class HomeController {
 	
 	private void loadImportantMessages(Model model) {
 		try {
-			model.addAttribute("importantMessage",
+			model.addAttribute("importantMessages",
 					messageService.getImportantMessages());
 		} catch (Exception e) {
 			log.error("Unable to load important messages", e);
