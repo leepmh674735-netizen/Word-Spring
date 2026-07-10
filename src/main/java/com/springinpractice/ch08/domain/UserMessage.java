@@ -2,9 +2,20 @@ package com.springinpractice.ch08.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "user_messages")
 public class UserMessage implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
     private String email;
@@ -14,6 +25,14 @@ public class UserMessage implements Serializable {
     private String acceptLanguage;
     private String userAgent;
     private Date dateCreated = new Date();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -81,7 +100,7 @@ public class UserMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "UserMessage [name=" + name + ", email=" + email + ", text=" + text + ", referer=" + referer
+        return "UserMessage [id=" + id + ", name=" + name + ", email=" + email + ", text=" + text + ", referer=" + referer
                 + ", ipAddress=" + ipAddress + ", acceptLanguage=" + acceptLanguage + ", userAgent=" + userAgent
                 + ", dateCreated=" + dateCreated + "]";
     }

@@ -40,6 +40,8 @@ dependencies {
     runtimeOnly 'org.glassfish.web:jakarta.servlet.jsp.jstl' 
     
     runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'com.h2database:h2'
+    implementation 'org.springframework.security:spring-security-taglibs'
     
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     compileOnly 'org.projectlombok:lombok'

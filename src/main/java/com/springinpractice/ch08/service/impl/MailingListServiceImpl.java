@@ -34,13 +34,13 @@ public class MailingListServiceImpl implements MailingListService {
     @Inject private JavaMailSender mailSender;
     @Inject private VelocityEngine velocityEngine;
     
-    @Value("#{mailingListServiceProps.noReplyEmailAddress}")
+    @Value("${app.mailinglist.noReplyEmailAddress:noreply@localhost}")
     private String noReplyEmailAddress;
     
-    @Value("#{mailingListServiceProps.confirmSubsciptionUrl}")
+    @Value("${app.mailinglist.confirmSubscriptionUrl:http://localhost:8181/mailinglist/subscribe-confirm}")
     private String confirmSubscriptionUrl;
     
-    @Value("#{mailingListServiceProps.confirmationKey}")
+    @Value("${app.mailinglist.confirmationKey:supersecretkey}")
     private String confirmationKey;
     
     @Override
