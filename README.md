@@ -15,7 +15,9 @@
 
 ### 🖥️ 홈페이지 프리뷰 (Main Preview)
 
-<img src="bbs_homepage.png" alt="BBS Homepage Preview" width="100%" style="border-radius: 24px; border: 4px solid #ff79c6; box-shadow: 0 10px 30px rgba(255, 121, 198, 0.4);" />
+<p align="center">
+  <img src="bbs_homepage.png" alt="BBS Homepage Preview" width="100%" />
+</p>
 
 ---
 
