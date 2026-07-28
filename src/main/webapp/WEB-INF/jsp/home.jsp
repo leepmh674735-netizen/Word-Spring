@@ -72,7 +72,7 @@
     <!-- Main Container -->
     <main class="container my-5">
         
-        <!-- Cute Character Hero Section -->
+        <!-- Cute Disney Character Hero Section -->
         <header class="hero-section text-start">
             <div class="row align-items-center g-4">
                 <!-- Text contents -->
@@ -80,22 +80,22 @@
                     <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2 rounded-pill mb-3">
                         <span class="pulse-dot me-2"></span>SYSOP ONLINE
                     </span>
-                    <h1 class="hero-title display-4 text-white fw-bold mb-3">Welcome to the BBS Hub 🐾</h1>
-                    <p class="hero-subtitle fs-5 mb-4 opacity-90 text-light">
-                        The digital meeting ground for sharing insights, announcements, roster lists, and communicating directly with our community. Let's build a warm digital space together!
+                    <h1 class="hero-title display-4 fw-bold mb-3"><span class="rainbow-text">Welcome to the BBS Hub 🌈</span></h1>
+                    <p class="hero-subtitle fs-5 mb-4 opacity-90">
+                        The digital meeting ground for sharing insights, announcements, roster lists, and communicating directly with our community. Let's build a magical digital space together! ✨⭐
                     </p>
                     <div class="d-flex justify-content-start gap-3">
-                        <a href="${rosterUrl}" class="btn btn-premium px-4 py-2">Explore Roster</a>
-                        <a href="${contactUrl}" class="btn btn-outline-custom px-4 py-2">Send Message</a>
+                        <a href="${rosterUrl}" class="btn btn-premium px-4 py-2">Explore Roster 🎨</a>
+                        <a href="${contactUrl}" class="btn btn-outline-custom px-4 py-2">Send Message 💌</a>
                     </div>
                 </div>
                 <!-- Cute Mascot column -->
                 <div class="col-lg-4 text-center">
                     <div class="d-flex align-items-center justify-content-center gap-3">
-                        <img src="<c:url value='/images/cyber_cat_mascot.png' />" alt="Cyber Cat Mascot" class="mascot-img img-fluid" style="max-height: 180px; width: auto;" />
+                        <img src="<c:url value='/images/disney_rainbow_mascot.jpg' />" alt="Disney Rainbow Mascot" class="mascot-img img-fluid" style="max-height: 180px; width: auto;" />
                         <div class="speech-bubble text-start">
-                            <span class="badge bg-indigo text-white mb-1">Guide Neko</span>
-                            <p class="mb-0 fw-medium small">Welcome, Nya~! I am Cyber-Neko. Explore our cute roster or drop a friendly message! 🌸✨</p>
+                            <span class="badge bg-primary text-white mb-1">Guide Puppy</span>
+                            <p class="mb-0 fw-medium small">Welcome, Sparkle~! I am Rainbow-Puppy. Explore our magical roster or drop a friendly message! 🌈✨🐾</p>
                         </div>
                     </div>
                 </div>
