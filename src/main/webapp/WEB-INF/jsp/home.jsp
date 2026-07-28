@@ -26,6 +26,13 @@
     <link href="<c:url value='/css/style.css' />" rel="stylesheet">
 </head>
 <body>
+    <!-- Top Rainbow Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scrollProgress"></div>
+    </div>
+
+    <!-- Floating Rainbow Bubbles Background -->
+    <div class="floating-bubbles" id="bubbleContainer"></div>
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
@@ -91,11 +98,11 @@
                 </div>
                 <!-- Cute Mascot column -->
                 <div class="col-lg-4 text-center">
-                    <div class="d-flex align-items-center justify-content-center gap-3">
-                        <img src="<c:url value='/images/disney_rainbow_mascot.jpg' />" alt="Disney Rainbow Mascot" class="mascot-img img-fluid" style="max-height: 180px; width: auto;" />
+                    <div class="d-flex align-items-center justify-content-center gap-3 mascot-container">
+                        <img src="<c:url value='/images/cyber_cat_mascot.png' />" alt="Cyber Neko Mascot" class="mascot-img img-fluid" style="max-height: 180px; width: auto;" />
                         <div class="speech-bubble text-start">
-                            <span class="badge bg-primary text-white mb-1">Guide Puppy</span>
-                            <p class="mb-0 fw-medium small">Welcome, Sparkle~! I am Rainbow-Puppy. Explore our magical roster or drop a friendly message! 🌈✨🐾</p>
+                            <span class="badge badge-rainbow-cat mb-1">Guide Neko 🐱</span>
+                            <p class="mb-0 fw-medium small text-muted">Welcome, Sparkle~! I am Cyber-Neko. Explore our magical roster or drop a friendly message! 🌈✨🐾🐱</p>
                         </div>
                     </div>
                 </div>
@@ -109,8 +116,9 @@
             <div class="col-lg-8">
                 
                 <!-- MOTD Card -->
-                <article class="glass-card motd-card mb-4">
-                    <div class="d-flex align-items-center mb-3">
+                <article class="glass-card motd-card cat-ears-card mb-4">
+                    <div class="cat-ears-inner"></div>
+                    <div class="d-flex align-items-center mb-3" style="position: relative; z-index: 12;">
                         <div class="service-icon bg-indigo text-white me-3" style="width: 40px; height: 40px; border-radius: 8px;">
                             <i class="bi bi-megaphone-fill"></i>
                         </div>
@@ -129,8 +137,9 @@
                 </article>
 
                 <!-- Important Messages Card list -->
-                <section class="glass-card">
-                    <div class="d-flex align-items-center mb-4">
+                <section class="glass-card cat-ears-card">
+                    <div class="cat-ears-inner"></div>
+                    <div class="d-flex align-items-center mb-4" style="position: relative; z-index: 12;">
                         <div class="service-icon bg-warning text-dark me-3" style="width: 40px; height: 40px; border-radius: 8px; background: #fbbf24;">
                             <i class="bi bi-exclamation-triangle-fill"></i>
                         </div>
@@ -241,5 +250,85 @@
 
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <!-- 🌈 Premium Rainbow & Cute Interaction Script -->
+    <script>
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            const bar = document.getElementById('scrollProgress');
+            if (bar) {
+                bar.style.width = scrolled + '%';
+            }
+        });
+
+        // Floating Bubbles Generator
+        const bubbleContainer = document.getElementById('bubbleContainer');
+        const createBubble = () => {
+            if (!bubbleContainer) return;
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            
+            // Random size, position, and speed
+            const size = Math.random() * 20 + 15; // 15px to 35px
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = (Math.random() * 100) + 'vw';
+            
+            const duration = Math.random() * 8 + 12; // 12s to 20s
+            bubble.style.animationDuration = duration + 's';
+            
+            bubbleContainer.appendChild(bubble);
+            
+            // Remove bubble after animation ends
+            setTimeout(() => {
+                bubble.remove();
+            }, duration * 1000);
+        };
+        // Initial bubbles
+        for (let i = 0; i < 6; i++) {
+            setTimeout(createBubble, Math.random() * 4000);
+        }
+        setInterval(createBubble, 3000);
+
+        // Interactive Mouse Rainbow Sparkle Trail
+        const symbols = ['🐾', '💖', '⭐', '✨', '🌈', '🐱'];
+        const colors = ['#ff9aa2', '#ffb7b2', '#ffd97d', '#b5e2a2', '#a0c4ff', '#c7ceea'];
+        let lastX = 0;
+        let lastY = 0;
+        const minMoveDist = 15; // Minimum movement distance to spawn a particle
+
+        window.addEventListener('mousemove', (e) => {
+            const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
+            if (dist < minMoveDist) return;
+            
+            lastX = e.clientX;
+            lastY = e.clientY;
+            
+            createSparkle(e.clientX, e.clientY);
+        });
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('span');
+            sparkle.classList.add('rainbow-sparkle');
+            
+            // Random character and color
+            sparkle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            sparkle.style.color = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Position fixed matching clientX/Y
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            
+            document.body.appendChild(sparkle);
+            
+            // Remove after animation finishes (1000ms)
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
