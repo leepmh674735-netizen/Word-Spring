@@ -16,7 +16,7 @@
 ### 🖥️ 홈페이지 프리뷰 (Main Preview)
 
 <p align="center">
-  <img src="bbs_homepage.png" alt="BBS Homepage Preview" width="100%" />
+  <img src="bbs_homepage_preview.gif" alt="BBS Homepage Preview" width="100%" />
 </p>
 
 ---
